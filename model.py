@@ -103,7 +103,7 @@ class NetworkImageNet(nn.Module):
 
     self.cells = nn.ModuleList()
     reduction_prev = True
-    for i in xrange(layers):
+    for i in range(layers): # xrange
       if i in [layers // 3, 2 * layers // 3]:
         C_curr *= 2
         reduction = True

@@ -10,18 +10,18 @@ from utils import preprocess_for_eval
 
 import sys
 import os
-sys.path.append('../PNASNet.TF')
+sys.path.append('../PNASNetTF')
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 import tensorflow as tf
-from pnasnet import build_pnasnet_large, pnasnet_large_arg_scope
+from PNASNetTF.pnasnet import build_pnasnet_large, pnasnet_large_arg_scope
 slim = tf.contrib.slim
 
 
 class ConvertPNASNet(object):
 
   def __init__(self):
-    self.image = Image.open('data/cat.jpg')
+    self.image = Image.open('/home/ubuntu/2_workspace/nni_hpo/3rdparty/PNASNet.pytorch/data/cat.jpg') # /home/ubuntu/2_workspace/nni_hpo/3rdparty/PNASNet.pytorch
     self.read_tf_weight()
     self.write_pytorch_weight()
 
@@ -37,7 +37,7 @@ class ConvertPNASNet(object):
     config.gpu_options.allow_growth = True
     sess = tf.Session(config=config)
     ckpt_restorer = tf.train.Saver()
-    ckpt_restorer.restore(sess, '../PNASNet.TF/data/model.ckpt')
+    ckpt_restorer.restore(sess, '/home/ubuntu/2_workspace/nni_hpo/3rdparty/PNASNet.pytorch/PNASNetTF/data/model.ckpt') # ../PNASNet.TF/data/model.ckpt
 
     weight_keys = [var.name[:-2] for var in tf.global_variables()]
     weight_vals = sess.run(tf.global_variables())

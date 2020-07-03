@@ -11,7 +11,7 @@ from genotypes import PNASNet
 from utils import preprocess_for_eval
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--valdir', type=str, default='data/val',
+parser.add_argument('--valdir', type=str, default='/home/ubuntu/0_datasets/data/ILSVRC2012/val', #
                     help='path to ImageNet val folder')
 parser.add_argument('--image_size', type=int, default=331,
                     help='image size')
